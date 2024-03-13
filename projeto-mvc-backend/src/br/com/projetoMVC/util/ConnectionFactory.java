@@ -9,9 +9,9 @@ import javax.naming.spi.DirStateFactory.Result;
 
 public class ConnectionFactory {
 
-	public static final String PATH = "jdbc:postgresql://localhost:5432/turmajava";
-	public static final String USER = "postgres";
-	public static final String PASSWORD = "pgadmin";
+	public static final String PATH = "jdbc:postgresql://localhost:5432/db_superdev"; // caminho do drive do banco  de dados
+	public static final String USER = "postgres"; // usuario do banco
+	public static final String PASSWORD = "admin"; // senha do banco
 
 	// metodo que retorna a conexão estabelecida
 
