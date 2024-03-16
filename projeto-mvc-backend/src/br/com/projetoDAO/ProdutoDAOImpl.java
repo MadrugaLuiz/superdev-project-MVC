@@ -20,7 +20,6 @@ public class ProdutoDAOImpl implements GenericDAO {
 	public ProdutoDAOImpl() throws Exception {
 		try {
 			this.conn = ConnectionFactory.getConnection();
-			System.out.println("ProdutoDAOImpl : Conectado com sucesso!!");
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -28,7 +27,7 @@ public class ProdutoDAOImpl implements GenericDAO {
 
 	@Override
 	public List<Object> listarTodos() {
-		List<Object> list = new ArrayList<Object>();
+		List<Object> lista = new ArrayList<Object>();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM PRODUTO";
@@ -41,7 +40,7 @@ public class ProdutoDAOImpl implements GenericDAO {
 				Produto produto = new Produto();
 				produto.setId(rs.getInt("id"));
 				produto.setDescricao(rs.getString("descricao"));
-				list.add(produto);
+				lista.add(produto);
 			}
 		} catch (SQLException ex) {
 			System.out.println("Problemas na DAO ao listar Produto" + ex.getMessage());
@@ -54,7 +53,7 @@ public class ProdutoDAOImpl implements GenericDAO {
 			}
 		}
 
-		return null;
+		return lista;
 	}
 
 	@Override
