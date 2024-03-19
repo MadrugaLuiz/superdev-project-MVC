@@ -41,4 +41,27 @@ public class ProdutoController {
 		}
 	}
 
+	public boolean alterar(Produto produto) {
+		try {
+			GenericDAO dao = new ProdutoDAOImpl();
+			dao.alterar(produto);
+			return true;
+		} catch (Exception e) {
+			System.out.println("Problemas na Controller para alterar Produto" + e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public void excluir(int id) {
+		try {
+			GenericDAO dao = new ProdutoDAOImpl();
+			dao.excluir(id);
+		} catch (Exception e) {
+			System.out.println("Problemas na Controller para excliur Produto" + e.getMessage());
+			e.printStackTrace();
+
+		}
+	}
+
 }
