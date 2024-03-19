@@ -92,21 +92,76 @@ public class ProdutoDAOImpl implements GenericDAO {
 		return produto;
 	}
 
-	@Override
 	public boolean cadastrar(Object object) {
-		// TODO Auto-generated method stub
-		return false;
+		Produto produto = (Produto) object;
+		PreparedStatement stmt = null;
+		String sql = "INSERT INTO produto (description) VALUES (?)";
+
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, produto.getDescricao());
+			stmt.execute();
+			return true;
+		} catch (SQLException ex) {
+			System.out.println("Problemas na DAO ao cadastrar Produto" + ex.getMessage());
+			ex.printStackTrace();
+			return false;
+		} finally {
+			try {
+				ConnectionFactory.closeConnection(conn, stmt, null);
+			} catch (Exception e) {
+				System.out.println("Problemas na DAO ao fechar conexão!" + e.getLocalizedMessage());
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	@Override
 	public boolean alterar(Object object) {
-		// TODO Auto-generated method stub
-		return false;
+		Produto produto = (Produto) object;
+		PreparedStatement stmt = null;
+		String sql = "UPDATE produto SET descricao = ? Where id =?";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, produto.getDescricao());
+			stmt.setInt(1, produto.getId());
+			return false;
+		} catch (SQLException ex) {
+			System.out.println("Erros na DAO ao alterar Produto!" + ex.getMessage());
+			ex.printStackTrace();
+			return false;
+		} finally {
+			try {
+
+				ConnectionFactory.closeConnection(conn, stmt, null);
+			} catch (Exception e) {
+				System.out.println("Problemas na DAO ao fechar conexão!" + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+
 	}
 
-	@Override
 	public void excluir(int id) {
-		// TODO Auto-generated method stub
+
+		String sql = "DELETE FROM produto WHERE id = ?";
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.execute();
+		} catch (SQLException ex) {
+			System.out.println("Problemas naDAO ao excluir Produto" + ex.getMessage());
+
+		} finally {
+			try {
+				ConnectionFactory.closeConnection(conn, stmt, null);
+			} catch (Exception e) {
+				System.out.println("Problemas naDAO ao fechar conexão!" + e.getLocalizedMessage());
+				e.printStackTrace();
+			}
+		}
 
 	}
 

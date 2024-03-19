@@ -8,10 +8,13 @@ public class main {
 	public static void main(String[] args) {
 
 		ProdutoController controller = new ProdutoController();
+		Produto p = new Produto();
+		p.setDescricao("Mouse");
+		controller.cadastrar(p);
 
 		System.out.println("--Lista de Produtos-");
 		System.out.println("id   DESCRIÇÃO");
-		;
+
 		for (Produto produto : controller.listarTodos()) {
 			System.out.println(produto.getId() + "    " + produto.getDescricao());
 		}

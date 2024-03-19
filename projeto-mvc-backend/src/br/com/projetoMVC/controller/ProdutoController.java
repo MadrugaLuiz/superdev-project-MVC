@@ -28,4 +28,17 @@ public class ProdutoController {
 
 	}
 
+	public boolean cadastrar(Produto produto) {
+		try {
+			GenericDAO dao = new ProdutoDAOImpl();
+			dao.cadastrar(produto);
+			return true;
+
+		} catch (Exception e) {
+			System.out.println("Problemas no Controler para cadastrar produto" + e.getLocalizedMessage());
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }
