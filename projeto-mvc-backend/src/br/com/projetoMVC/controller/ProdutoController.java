@@ -28,6 +28,20 @@ public class ProdutoController {
 
 	}
 
+	public Produto listarPorId(int id) {
+		try {
+			GenericDAO dao = new ProdutoDAOImpl();
+			Produto produto = (Produto) dao.listarPorId(id);
+			return produto;
+
+		} catch (Exception e) {
+			System.out.println("Problemas na Controller para listar Produtos" + e.getMessage());
+			e.printStackTrace();
+			return null;
+
+		}
+	}
+
 	public boolean cadastrar(Produto produto) {
 		try {
 			GenericDAO dao = new ProdutoDAOImpl();
